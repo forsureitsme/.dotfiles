@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+if ! command -v paru >/dev/null 2>&1; then
+    echo "paru could not be found"
+    exit 1
+fi
+
+cd $(dirname $0) >/dev/null
+
+homeFolder=/home/$(logname)
+foldersToLink=(
+    ".config/hypr"
+    ".config/waybar"
+)
+
+source "./sh/bootstrap.sh"
+source "./sh/git.sh"
+source "./sh/packages.sh"
+source "./sh/backup.sh"
+source "./sh/link.sh"
+
+cd - >/dev/null

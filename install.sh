@@ -5,18 +5,20 @@ if ! command -v paru >/dev/null 2>&1; then
     exit 1
 fi
 
-cd $(dirname $0) >/dev/null
-
 homeFolder=/home/$(logname)
 foldersToLink=(
     ".config/hypr"
     ".config/waybar"
 )
 
+cd $(dirname $0) >/dev/null
 source "./sh/bootstrap.sh"
-source "./sh/git.sh"
-source "./sh/packages.sh"
-source "./sh/backup.sh"
+
+source "./sh/git.sh" &
+source "./sh/packages.sh" &
+source "./sh/backup.sh" &
+wait
+
 source "./sh/link.sh"
 
 cd - >/dev/null

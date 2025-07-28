@@ -8,23 +8,17 @@ try {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = dirname(__filename);
 
+    const profilePage = new URL('https://trackmania.exchange/usershow/51154');
+    const html = await fetch(profilePage).then(r => r.text());
+    
+    const regex = /profile-mapfeature[^]*data-attrs="({[^]+})"/;
+    const attrs = html.match(regex)[1].replace(/&quot;/g, '"');
+    const { id: mapId } = JSON.parse(attrs);
+    
     const manifestFilePath = '/../assets/wallpaper.json';
-
-    const mapsApi = new URL('https://trackmania.exchange/api/maps')
-    mapsApi.search = new URLSearchParams({
-        count: 1,
-        author: 'ForSureItsMe',
-        fields: ['MapId'],
-        order1: 6 // Newest Uploaded
-    }).toString();
-
-    const data = await fetch(mapsApi).then(r => r.json());
-
-    const mapId = data.Results[0].MapId;
-
     let manifest;
     if (existsSync(__dirname + manifestFilePath)) {
-        manifest = (await import(__dirname + manifestFilePath, { assert: { type: 'json' } })).default;
+        manifest = (await import(__dirname + manifestFilePath, { with: { type: 'json' } })).default;
     }
 
     if (!mapId || mapId === manifest?.mapId) {

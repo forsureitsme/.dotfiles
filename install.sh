@@ -6,13 +6,9 @@ if ! command -v paru >/dev/null 2>&1; then
 fi
 
 homeFolder=/home/$(logname)
-foldersToLink=(
-    ".config/hypr"
-    ".config/waybar"
-    ".config/fish"
-)
+cd "$(dirname "$0")" >/dev/null || exit 1
+foldersToLink=$(ls -d -- .config/*)
 
-cd "$(dirname "$0")" >/dev/null || exit
 source "./sh/bootstrap.sh"
 
 source "./sh/git.sh" &

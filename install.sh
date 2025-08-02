@@ -7,9 +7,7 @@ fi
 
 homeFolder=/home/$(logname)
 cd "$(dirname "$0")" >/dev/null || exit 1
-foldersToLink=$(ls -d -- .config/*)
-
-source "./sh/bootstrap.sh"
+foldersToLink=(.config/*)
 
 source "./sh/git.sh" &
 source "./sh/packages.sh" &
@@ -18,4 +16,4 @@ wait
 
 source "./sh/link.sh"
 
-cd - || exit>/dev/null
+cd - >/dev/null || exit

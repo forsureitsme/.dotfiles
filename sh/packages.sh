@@ -1,13 +1,14 @@
 #!/usr/bin/bash
 
-echo Remove bloat
-BLA::start_loading_animation "${BLA_modern_metro[@]}"
-paru -R fastfetch firefox --noconfirm --quiet --print | sed 1,2d >/dev/null
-BLA::stop_loading_animation
-printf '\e[A\e[K' # Erase line of animation
+echo Install packages
+paru -S nodejs pnpm webp-pixbuf-loader keyd mc lazygit bluetuith-bin zen-browser-bin vscodium --skipreview --batchinstall --noconfirm --quiet --needed
 
-echo Install script dependencies
-BLA::start_loading_animation "${BLA_modern_metro[@]}"
-paru -S nodejs pnpm webp-pixbuf-loader keyd spotify mc lazygit bluetuith-bin zen-browser-bin vscodium --noconfirm --quiet --print | sed 1,2d >/dev/null
-BLA::stop_loading_animation
-printf '\e[A\e[K' # Erase line of animation
+echo Install flatpaks
+flatpaks=(
+    "com.spotify.Client"
+)
+
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+for flatpak in "${flatpaks[@]}"; do
+    flatpak install -y flathub "$flatpak"
+done

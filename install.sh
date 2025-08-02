@@ -9,9 +9,10 @@ homeFolder=/home/$(logname)
 foldersToLink=(
     ".config/hypr"
     ".config/waybar"
+    ".config/fish"
 )
 
-cd $(dirname $0) >/dev/null
+cd "$(dirname "$0")" >/dev/null || exit
 source "./sh/bootstrap.sh"
 
 source "./sh/git.sh" &
@@ -21,4 +22,4 @@ wait
 
 source "./sh/link.sh"
 
-cd - >/dev/null
+cd - || exit>/dev/null

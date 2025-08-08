@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 echo Install packages
-paru -S nodejs pnpm webp-pixbuf-loader keyd mc lazygit bluetuith-bin zen-browser-bin vscodium --skipreview --batchinstall --noconfirm --quiet --needed
+paru -S nodejs pnpm webp-pixbuf-loader keyd mc lazygit bluetuith-bin zen-browser-bin vscodium flatpak --skipreview --batchinstall --noconfirm --quiet --needed
 
 echo Install flatpaks
 flatpaks=(

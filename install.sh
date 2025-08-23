@@ -14,6 +14,8 @@ source "./sh/packages.sh" &
 source "./sh/backup.sh" &
 wait
 
-source "./sh/link.sh"
+source "./sh/link.sh" &
+source "./sh/vscodium.sh" &
+wait
 
 cd - >/dev/null || exit

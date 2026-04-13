@@ -13,5 +13,5 @@ end
 # pnpm end
 
 if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]
-  exec hyprland
+  exec start-hyprland
 end

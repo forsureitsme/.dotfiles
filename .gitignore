@@ -1,5 +1,6 @@
 backup/
 modules/
+.secrets
 .config/hypr/assets/wallpaper*
 
 .config/fish/**/*
